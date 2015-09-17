@@ -18,37 +18,46 @@ import urllib2
 import feedparser		# imports feedparser to parse XML feed
 
 user='kwallace1994@gmail.com'		# replace dtclass15@gmail.com with your personal gmail user or email, or youruser@newschool.edu for your school account
-passwd='landbeforetime94'		# replace *** with your password for the above account
+passwd='****'		# replace *** with your password for the above account
 
 
-newmails = feedparser.parse("https://" + user + ":" + passwd + "@mail.google.com/gmail/feed/atom").entries
+def emailcount(n): #define function emailcount
+    if n > 0: # if you have over 0 emails. You can change this based on how many emails you currently have unread in your inbox
+        print "you have" + str(n) + "new emails"
+        print i.
+    else: 
+        print "you have no new email"
+
+
+newmails1 = int(feedparser.parse("https://" + user + ":" + passwd + "@mail.google.com/gmail/feed/atom")["feed"]["fullcount"])
+newmails = int(feedparser.parse("https://" + user + ":" + passwd + "@mail.google.com/gmail/feed/atom").entries)
 for i in newmails:		#for loop itterates through newmails feed
     #print str(i.title)		# uncomment to print out each title of unread emails
-    if str(i.title)=="Canvas":		# replace the word Search with the title of the email you are searching for
-        print i.summary
-        	###THIS MAY GO IN WHILE LOOP?? 
+    if "canvas" in str(i.title) and "homework" in str(i.summary):
+        	#print i.summary
+##Calling functions here
+		emailcount(newmails1)
 
 
-while True: 	#loop forever ---- to exit use keys "ctr+c"
-    newmails1 = int(feedparser.parse("https://" + user + ":" + passwd + "@mail.google.com/gmail/feed/atom")["feed"]["fullcount"])
+#while True: 	#loop forever ---- to exit use keys "ctr+c"
+    #newmails1 = int(feedparser.parse("https://" + user + ":" + passwd + "@mail.google.com/gmail/feed/atom")["feed"]["fullcount"])
     
-    def emailcount(n): #define function emailcount
-        if n > 0: # if you have over 0 emails. You can change this based on how many emails you currently have unread in your inbox
-            print "you have "+str(n)+" new email(s)"
-        else: 
-            print "you have no new email"
+#def emailcount(n): #define function emailcount
+    #if n > 0: # if you have over 0 emails. You can change this based on how many emails you currently have unread in your inbox
+        #print "you have" + str(n) + "new email"
+    #else: 
+        #print "you have no new email"
 
-    emailcount(newmails1) #call emailcount function and pass value newmails as agrument
-    time.sleep(60)		#wait 60 seconds
-
+    #emailcount(newmails1) #call emailcount function and pass value newmails as agrument
 
 
 
-def sendEmail: 
+
+def sendEmail : 
 # Change to your own account information
 	to = 'kwallace1994@gmail.com'
 	gmail_user = 'kwallace1994@gmail.com'
-	gmail_password = 'landbeforetime94'
+	gmail_password = '****'
 	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
